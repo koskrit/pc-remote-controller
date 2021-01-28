@@ -1,13 +1,55 @@
-var app = require("express")();
-var http = require("http").createServer(app);
-let path = require("path");
+//npm i express
 
-app.get("/", (req, res) => {
-   res.sendFile(
-      "D:zApps/native apps/npmTester/npmTester2/electron-quick-start/index.html"
-   );
+const express = require("express");
+
+const robot = require("kbm-robot");
+
+const cors = require("cors");
+
+const app = express();
+const PORT = process.env.PORT || 4000;
+app.use(cors());
+
+
+
+app.get("/space", (req, res) => {
+   
+
+   robot.startJar();
+
+   robot.press("SPACE")
+       
+       .sleep(100)
+       
+       .release("SPACE")
+       .sleep(100)
+      
+       .go()
+       .then(robot.stopJar);
+
+   res.json({ message: "done" });
+});
+app.get("/tab", (req, res) => {
+  
+   robot.startJar();
+
+robot.press("ctrl")
+    .press("tab")
+    .sleep(100)
+    .release("tab")
+    .release("ctrl")
+    .sleep(100)
+    
+    .go()
+    .then(robot.stopJar);
+
+   res.json({ message: "done" });
 });
 
-http.listen(3000, () => {
-   console.log("listening on *:3000");
+
+
+app.listen(PORT, () => {
+   console.log("listening on http://localhost:4000");
 });
+
+let os = require('os')
