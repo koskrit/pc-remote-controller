@@ -1,5 +1,3 @@
-//npm i express
-
 const express = require("express");
 const robot = require("kbm-robot");
 const cors = require("cors");
@@ -13,12 +11,9 @@ app.get("/space", (req, res) => {
 
    robot
       .press("SPACE")
-
       .sleep(100)
-
       .release("SPACE")
       .sleep(100)
-
       .go()
       .then(robot.stopJar);
 
