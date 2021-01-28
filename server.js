@@ -29,7 +29,6 @@ app.get("/tab", (req, res) => {
       .release("tab")
       .release("ctrl")
       .sleep(100)
-
       .go()
       .then(robot.stopJar);
 
